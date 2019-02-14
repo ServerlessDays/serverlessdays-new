@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:nuxt": "nuxt",
-    "dev:autographql": "autographql dev -c ./autographql.config.json",
+    "dev:autographql": "AWS_PROFILE=senzo autographql dev -c ./autographql.config.json",
     "dev": "concurrently \"npm run dev:nuxt\" \"npm run dev:autographql\"",
     "generate:nuxt": "nuxt generate",
     "build:nuxt": "nuxt build --spa",
@@ -32,16 +32,17 @@
     "yaml-front-matter": "^4.0.0"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "glob-all": "^3.1.0",
-    "purgecss-webpack-plugin": "^1.4.0",
     "ava": "1.0.0-rc.2",
+    "aws-sdk": "^2.403.0",
+    "concurrently": "^4.1.0",
     "eslint": "^5.13.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "esm": "^3.2.0"
+    "esm": "^3.2.0",
+    "glob-all": "^3.1.0",
+    "purgecss-webpack-plugin": "^1.4.0"
   }
 }

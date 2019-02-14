@@ -2,25 +2,26 @@ scalar DateTime
 scalar URL
 scalar Email 
 
-type socialLinks {
+type SocialLinks {
     name: String
     icon: URL
     link: URL
 }
 
-type speaker {
+type Speaker {
     id: ID!
     name: String!
     organisation: String
     nationality: String
     bio: String
     profilePic: URL
-    social: [socialLinks]
+    status: Status
+    social: [SocialLinks]
     createdAt: DateTime
     modifiedAt: DateTime
 }
 
-type room {
+type Room {
     id: ID!
     name: String!
     description: String
@@ -32,45 +33,63 @@ type room {
     modifiedAt: DateTime
 }
 
-type venue {
+type Venue {
     id: ID!
     name: String!
     address: String
     city: String
     image: URL
     rooms: [Room]
+    createdAt: DateTime
+    modifiedAt: DateTime
 }
 
-type session {
+enum Status {
+    PUBLISHED,
+    DRAFT,
+    ARCHIVED
+}
+
+type Session {
     id: ID!
     name: String
     description: String
-    startTime: DateTime
-    endTime: DateTime
-    room: Room
+    speakers: [Speaker]
+    video: URL
+    status: Status
     createdAt: DateTime
     modifiedAt: DateTime
-    speakers: [speaker]
 }
 
-type agenda {
-    id: ID!
+type DayAgenda {
+    date: DateTime
+    startTime: DateTime
+    endTime: DateTime
+    session: Session
+    description: String
+    createdAt: DateTime
+    modifiedAt: DateTime
+}
 
+type EventAgenda {
+    id: ID!
+    eventId: ID
+    DayAgendas: [DayAgenda]
 }
 
 type SponsorContacts {
-    id: ID!
     name: String!
     title: String!
     email: Email
     phone: String
+    location: String
 }
 
 type Sponsor {
     name: String
     logo: URL
     description: URL
-    contact: [sponsorContacts]
+    contact: [SponsorContacts]
     createdAt: DateTime
     modifiedAt: DateTime
 }
@@ -83,19 +102,25 @@ type Milestone {
 type Event {
     id: ID!
     name: String!
-    tagline: String
+    description: String
     startDate: DateTime
     endDate: DateTime
-    milestones: [milestone]
+    hero: URL
+    tagline: String
+    milestones: [Milestone]
     createdAt: DateTime
     modifiedAt: DateTime
 }
 
-type eventSponsors {
+type EventSponsors {
     id: ID!
     eventId: ID
     sponsor: Sponsor
     tier: String
     createdAt: DateTime
     modifiedAt: DateTime
+}
+
+type Query {
+    getEvent (id: ID!): Event
 }

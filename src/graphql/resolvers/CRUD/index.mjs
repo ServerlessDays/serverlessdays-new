@@ -35,15 +35,19 @@ class documentClient {
       TableName: collection,
       Key: key
     }
-    // console.log(params)
-    await this.documentClient.get(params, (error, data) => {
+    console.log(params)
+    return this.documentClient.get(params).promise()
+
+    /*, (error, data) => {
       if (error) {
         console.log(error)
         return false
       } else {
+        console.log(data)
         return data.Item
       }
     })
+    */
   }
 
   async update ({ collection, key, item }) {
