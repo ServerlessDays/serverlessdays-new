@@ -1,0 +1,101 @@
+scalar DateTime
+scalar URL
+scalar Email 
+
+type socialLinks {
+    name: String
+    icon: URL
+    link: URL
+}
+
+type speaker {
+    id: ID!
+    name: String!
+    organisation: String
+    nationality: String
+    bio: String
+    profilePic: URL
+    social: [socialLinks]
+    createdAt: DateTime
+    modifiedAt: DateTime
+}
+
+type room {
+    id: ID!
+    name: String!
+    description: String
+    layout: String
+    capacity: Int
+    facilities: [String]
+    accessibility: [String]
+    createdAt: DateTime
+    modifiedAt: DateTime
+}
+
+type venue {
+    id: ID!
+    name: String!
+    address: String
+    city: String
+    image: URL
+    rooms: [Room]
+}
+
+type session {
+    id: ID!
+    name: String
+    description: String
+    startTime: DateTime
+    endTime: DateTime
+    room: Room
+    createdAt: DateTime
+    modifiedAt: DateTime
+    speakers: [speaker]
+}
+
+type agenda {
+    id: ID!
+
+}
+
+type SponsorContacts {
+    id: ID!
+    name: String!
+    title: String!
+    email: Email
+    phone: String
+}
+
+type Sponsor {
+    name: String
+    logo: URL
+    description: URL
+    contact: [sponsorContacts]
+    createdAt: DateTime
+    modifiedAt: DateTime
+}
+
+type Milestone {
+    description: String!
+    date: DateTime!
+}
+
+type Event {
+    id: ID!
+    name: String!
+    tagline: String
+    startDate: DateTime
+    endDate: DateTime
+    milestones: [milestone]
+    createdAt: DateTime
+    modifiedAt: DateTime
+}
+
+type eventSponsors {
+    id: ID!
+    eventId: ID
+    sponsor: Sponsor
+    tier: String
+    createdAt: DateTime
+    modifiedAt: DateTime
+}

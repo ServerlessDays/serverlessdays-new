@@ -1,0 +1,15 @@
+{
+    "name": "modDev",
+    "schema": "./src/graphql/schema/schema.gql",
+    "resolvers": "./src/graphql/resolvers",
+    "external": "data",
+    "providers": [
+        {
+            "name": "aws",
+            "dist": "./dist/graphql"
+        }
+    ],
+    "dev": {
+        "port": 7000
+    }
+}
