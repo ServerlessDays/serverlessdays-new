@@ -10305,7 +10305,6 @@ class documentClient {
       TableName: collection,
       Key: key
     };
-    console.log(params);
     return this.documentClient.get(params).promise();
     /*, (error, data) => {
       if (error) {
@@ -10378,7 +10377,6 @@ const getEvent = async (args, context) => {
     collection: 'Event',
     key: args
   });
-  console.log(Item);
   return Item;
 };
 

@@ -1,43 +1,33 @@
 <template>
-  <div class="w-100">
-    <div class="w-100" v-if="isAuthenticated === true">
-      <nav-bar :nav-bar-items="allSections"/>
-      <div class="w-100 mt5 pa4 tc">
-        <img src="~/assets/logo.svg" />
-      </div>
-      <cards :cardSet="allSections"/>
-    </div>
-    <div v-else class="dt w-100 vh-100">
-      <div class="dtc center v-mid">
-        <login-modal />
-      </div>
-    </div>
+  <div class="w-100 vh-100">
+    <nav-bar class="mr3-l pt3-l" :nav-bar-items="navigation"/>
+    <img class="pl6-l pl3-m pa1" v-bind:src="getEvent.logo">
+    <div class="w-90-l mt5 pa4 tl"></div>
   </div>
 </template>
 
 <script>
-import navBar from '../components/navBar.vue';
-import cards from '../components/cards.vue';
-import loginModal from '../components/loginModal.vue';
-import { allSections } from '../middleware/gql';
+import navBar from "../components/navBar.vue";
+import cards from "../components/cards.vue";
+import { getEvent } from "../middleware/gql";
 
 export default {
-  components: { navBar, cards, loginModal },
+  components: { navBar, cards },
   data() {
     return {
-      allSections: [],
+      getEvent: []
     };
   },
   computed: {
-    isAuthenticated: function() {
-      return this.$store.state.token ? true : false;
-    },
+    navigation: function() {
+      return this.$store.state.nav;
+    }
   },
   apollo: {
-    allSections: {
-      query: allSections,
-      variables: { status: 'published' },
-    },
-  },
+    getEvent: {
+      query: getEvent,
+      variables: { id: "9314093u43r" }
+    }
+  }
 };
 </script>

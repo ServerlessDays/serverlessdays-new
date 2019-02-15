@@ -5,7 +5,7 @@ const path = require('path')
 module.exports = {
   srcDir: 'src/web/',
   vendor: ['prismjs'],
-  css: ['tachyons'],
+  css: ['tachyons', '@/assets/css/custom.css'],
   modules: ['@nuxtjs/apollo'],
   build: {
     extend (config, { isDev, isClient }) {
@@ -29,7 +29,6 @@ module.exports = {
     dir: 'dist/web'
   },
   apollo: {
-    tokenName: 'id_token',
     clientConfigs: {
       default: {
         httpEndpoint: 'http://localhost:7000'

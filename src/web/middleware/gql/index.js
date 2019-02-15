@@ -1,6 +1,20 @@
 import gql from 'graphql-tag'
 
-const allSections = gql`query allSections($status: String!) {
+const getEvent = gql`
+  query getEvent($id: ID!) {
+    getEvent(id: $id) {
+      id
+      name
+      description
+      logo
+      startDate
+      endDate
+    }
+  }
+`
+
+const allSections = gql`
+  query allSections($status: String!) {
     allSections(status: $status) {
       key
       name
@@ -11,7 +25,8 @@ const allSections = gql`query allSections($status: String!) {
   }
 `
 
-const documentListBySection = gql`query documentListBySection($status: String!, $section: String!) {
+const documentListBySection = gql`
+  query documentListBySection($status: String!, $section: String!) {
     documentListBySection(status: $status, section: $section) {
       key
       name
@@ -23,15 +38,18 @@ const documentListBySection = gql`query documentListBySection($status: String!, 
         path
       }
     }
-  }`
+  }
+`
 
-const documentByPath = gql`query documentByPath($path: String!) {
+const documentByPath = gql`
+  query documentByPath($path: String!) {
     documentByPath(path: $path) {
       name
       description
       frontmatter
       markdown
     }
-  }`
+  }
+`
 
-export { allSections, documentListBySection, documentByPath }
+export { getEvent, allSections, documentListBySection, documentByPath }

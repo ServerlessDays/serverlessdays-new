@@ -35,7 +35,7 @@ class documentClient {
       TableName: collection,
       Key: key
     }
-    console.log(params)
+
     return this.documentClient.get(params).promise()
 
     /*, (error, data) => {

@@ -105,6 +105,7 @@ type Event {
     description: String
     startDate: DateTime
     endDate: DateTime
+    logo: URL
     hero: URL
     tagline: String
     milestones: [Milestone]
