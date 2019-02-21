@@ -41,7 +41,7 @@ export default {
   transition: width 0.7s ease, background-color 0.7s ease;
 }
 .underline-grow:hover:after {
-  background: #7777ff;
+  background: yellow;
   width: 100%;
 }
 </style>

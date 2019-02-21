@@ -1,18 +1,17 @@
 <template>
   <div class="w-100 vh-100">
     <nav-bar class="mr3-l pt3-l" :nav-bar-items="navigation"/>
-    <img class="pl6-l pl3-m pa1" v-bind:src="getEvent.logo">
-    <div class="w-90-l mt5 pa4 tl"></div>
+    <hero :eventDetails="getEvent"/>
   </div>
 </template>
 
 <script>
 import navBar from "../components/navBar.vue";
-import cards from "../components/cards.vue";
+import hero from "../components/hero.vue";
 import { getEvent } from "../middleware/gql";
 
 export default {
-  components: { navBar, cards },
+  components: { navBar, hero },
   data() {
     return {
       getEvent: []

@@ -2,3 +2,5 @@
 .primaryBkg { background-color: #001F3F; }
 .contrastColor { color: #001F3F; }
 .contrastBkg { background-color: #ffffff; }
+.accent { color: yellow }
+.accentBkg { background: yellow }

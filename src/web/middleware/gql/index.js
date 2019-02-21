@@ -9,6 +9,11 @@ const getEvent = gql`
       logo
       startDate
       endDate
+      milestones {
+        id
+        date
+        description
+      }
     }
   }
 `

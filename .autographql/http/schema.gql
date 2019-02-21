@@ -95,6 +95,7 @@ type Sponsor {
 }
 
 type Milestone {
+    id: ID!
     description: String!
     date: DateTime!
 }

@@ -1,13 +1,14 @@
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const glob = require('glob-all')
-const path = require('path')
+import PurgecssPlugin from 'purgecss-webpack-plugin'
+import glob from 'glob-all'
+import path from 'path'
 
-module.exports = {
+export default {
   srcDir: 'src/web/',
   vendor: ['prismjs'],
   css: ['tachyons', '@/assets/css/custom.css'],
   modules: ['@nuxtjs/apollo'],
   build: {
+    extractCSS: true,
     extend (config, { isDev, isClient }) {
       if (!isDev) {
         // Remove unused CSS using purgecss. See https://github.com/FullHuman/purgecss
@@ -15,9 +16,9 @@ module.exports = {
         config.plugins.push(
           new PurgecssPlugin({
             paths: glob.sync([
-              path.join(__dirname, './pages /**/*.vue'),
-              path.join(__dirname, './layouts /**/*.vue'),
-              path.join(__dirname, './components /**/*.vue')
+              path.join(__dirname, './src/web/pages/**/*.vue'),
+              path.join(__dirname, './src/web/layouts/**/*.vue'),
+              path.join(__dirname, './src/web/components/**/*.vue')
             ]),
             whitelist: ['html', 'body']
           })
@@ -26,7 +27,8 @@ module.exports = {
     }
   },
   generate: {
-    dir: 'dist/web'
+    dir: 'dist/web',
+    interval: '100'
   },
   apollo: {
     clientConfigs: {
